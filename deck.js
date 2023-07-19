@@ -1,7 +1,6 @@
 const SUITES = ["♠", "♣", "♥", "♦"];
 const VALUES = [
     "A",
-    "1",
     "2",
     "3",
     "4",
@@ -19,6 +18,19 @@ const VALUES = [
 export default class Deck {
     constructor(cards = freshDeck()) {
         this.cards = cards;
+    }
+
+    get numberOfCards() {
+        return this.cards.length;
+    }
+
+    shuffle() {
+        /*For loop that goes through the cards and flips them with the other cards in the array.  */
+        for (let i = this.numberOfCards -1; i > 0; i-- ) {
+            const newIndex = Math.floor(Math.random() * (i + 1))
+            const oldValue = this.cards[newIndex]
+            this.cards[newIndex] = this.cards[i]
+        }
     }
 }
 
@@ -38,6 +50,7 @@ class Card {
 
 function freshDeck() {
     // Returns two arrays and turns it into a single array using FlatMap()
+    // flatMap() takes what would be 4 array's of 13 elements and turns it into one array.
     return SUITES.flatMap(suite => {
         return VALUES.map(value => {
             // return a new instance of deck.
