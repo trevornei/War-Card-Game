@@ -42,6 +42,11 @@ class Card {
     }
 }
 
+function getHTML() {
+    const cardDiv = document.createElement('div');
+    cardDiv.innerText = this.suite;
+    cardDiv.
+}
 
 /*
   Create a function that creates a new deck by combining SUITES and VALUES array. 
