@@ -40,13 +40,21 @@ class Card {
         this.suite = suite;
         this.value = value;
     }
+
+    get color() {
+        return this.suite === '♣' || this.suite === '♠' ? 'black' : 'red';
+    }
+    
+    getHTML() {
+        const cardDiv = document.createElement('div');
+        cardDiv.innerText = this.suite;
+        cardDiv.classList.add("card", this.color);
+        cardDiv.dataset.value = `${this.value} ${this.suite}`;
+        return cardDiv;
+    }
 }
 
-function getHTML() {
-    const cardDiv = document.createElement('div');
-    cardDiv.innerText = this.suite;
-    cardDiv.
-}
+
 
 /*
   Create a function that creates a new deck by combining SUITES and VALUES array. 
