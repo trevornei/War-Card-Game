@@ -25,8 +25,6 @@ const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck');
 const text = document.querySelector('.text');
 
-computerCardSlot.appendChild(deck.cards[0].getHTML())
-
 let playerDeck, computerDeck, inRound, stop;
 
 /* Variable for when the user clicks to flip a card. 

@@ -1,4 +1,4 @@
-const SUITES = ["♠", "♣", "♥", "♦"];
+const SUITS = ["♠", "♣", "♥", "♦"];
 const VALUES = [
     "A",
     "2",
@@ -48,21 +48,21 @@ export default class Deck {
 
 
 class Card {
-    constructor(suite, value) {
-        this.suite = suite;
+    constructor(suit, value) {
+        this.suit = suit;
         this.value = value;
     }
     // NOTE: Method uses a ternary operator to decide the color of the card based on the suite.
     get color() {
-        return this.suite === '♣' || this.suite === '♠' ? 'black' : 'red';
+        return this.suit === '♣' || this.suit === '♠' ? 'black' : 'red';
     }
     
     // NOTE: Method Creates a new HTML Element inside a div. 
     getHTML() {
         const cardDiv = document.createElement('div');
-        cardDiv.innerText = this.suite;
-        cardDiv.classList.add("card", this.value);
-        cardDiv.dataset.value = `${this.value} ${this.suite}`;
+        cardDiv.innerText = this.suit;
+        cardDiv.classList.add("card", this.color);
+        cardDiv.dataset.value = `${this.value} ${this.suit}`;
         return cardDiv;
     }
 }
@@ -77,10 +77,10 @@ class Card {
 function freshDeck() {
     // Returns two arrays and turns it into a single array using FlatMap()
     // flatMap() takes what would be 4 array's of 13 elements and turns it into one array.
-    return SUITES.flatMap(suite => {
+    return SUITS.flatMap(suit => {
         return VALUES.map(value => {
             // return a new instance of deck.
-            return new Card (suite, value);
+            return new Card (suit, value);
         })
     })
 
