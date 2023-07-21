@@ -45,12 +45,20 @@ body {
     justify-content: center;
 }
 
-.computer-deck {
-    margin-top: 100px;
-}
+.card-slot {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    font-size: 3rem;
+    color: black;
+    background-color: white;
+    user-select: none;
+    border-radius: .5rem;
+    box-shadow: 2.5px 2.5px 2.5px;
 
-.player-deck {
-    max-height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .text {
@@ -90,25 +98,4 @@ body {
     right: .5rem;
     transform: rotate(180deg);
     color: white;
-}
-
-.card.black {
-    color: black;
-}
-
-.card.red {
-    color: red;
-    margin-top: 100px;
-}
-
-.card.black::after {
-    color: black;
-}
-
-.card.red::after {
-    color: red;
-}
-
-.player-card-slot {
-    max-height: 112px;
 }

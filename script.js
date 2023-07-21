@@ -21,9 +21,11 @@ const CARD_VALUE_MAP = {
 const computerCardSlot = document.querySelector('.computer-card-slot');
 const playerCardSlot = document.querySelector('.player-card-slot');
 
-const computerDeckElement = document.querySelector('computer-deck')
+const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck');
 const text = document.querySelector('.text');
+
+computerCardSlot.appendChild(deck.cards[0].getHTML())
 
 let playerDeck, computerDeck, inRound, stop;
 
@@ -44,16 +46,21 @@ document.addEventListener('click', () => {
 
 startGame();
 function startGame() {
+    // Game starts out with a new instance of Deck.
     const deck = new Deck();
     deck.shuffle();
-
+    // to check the midpoint: round the value of deck.numberOfCards to the largest integer after dividing by two.
     const deckMidPoint = Math.ceil(deck.numberOfCards / 2);
+    // NOTE: New instance of Deck representing the arrays for the user and the computer.
     playerDeck = new Deck(deck.cards.slice(0, deckMidPoint))
     computerDeck = new Deck(deck.cards.slice(deckMidPoint, deck.numberOfCards));
     console.log(playerDeck)
     console.log(computerDeck)
 
+    inRound = false;
     stop = false;
+
+    cleanBeforeRound();
 }
 
 function cleanBeforeRound() {
@@ -65,10 +72,11 @@ function cleanBeforeRound() {
     updateDeckCount()
 }
 
-function flipCards(){
+function flipCards() {
     inRound = true;
 
-    const playerCard = playerCard.pop()
+    const playerCard = playerDeck.pop();
+    const computerCard = computerDeck.pop();
 
     playerCardSlot.appendChild(playerCard.getHTML())
     computerCardSlot.appendChild(computerCard.getHTML())

@@ -25,20 +25,23 @@ export default class Deck {
         return this.cards.length;
     }
 
+    // NOTE: Returns the first card in the deck.
     pop() {
         return this.cards.shift()
     }
 
-    push() {
-        this.cards.push(cards);
+    // NOTE: Returns the last card from the deck.
+    push(card) {
+        this.cards.push(card);
     }
 
     shuffle() {
-        /*For loop that goes through the cards and flips them with the other cards in the array.  */
+        /*For loop that goes through the cards and flips them with the other cards in the array. This is achieved by starting from the last.*/
         for (let i = this.numberOfCards -1; i > 0; i-- ) {
             const newIndex = Math.floor(Math.random() * (i + 1))
             const oldValue = this.cards[newIndex]
             this.cards[newIndex] = this.cards[i]
+            this.cards[i] = oldValue
         }
     }
 }
@@ -49,16 +52,16 @@ class Card {
         this.suite = suite;
         this.value = value;
     }
-
+    // NOTE: Method uses a ternary operator to decide the color of the card based on the suite.
     get color() {
         return this.suite === '♣' || this.suite === '♠' ? 'black' : 'red';
     }
     
-    // NOTE: Function Creates a new HTML Element inside a div. 
+    // NOTE: Method Creates a new HTML Element inside a div. 
     getHTML() {
         const cardDiv = document.createElement('div');
         cardDiv.innerText = this.suite;
-        cardDiv.classList.add("card", this.color);
+        cardDiv.classList.add("card", this.value);
         cardDiv.dataset.value = `${this.value} ${this.suite}`;
         return cardDiv;
     }
