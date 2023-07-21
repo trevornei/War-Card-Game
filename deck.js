@@ -54,6 +54,7 @@ class Card {
         return this.suite === '♣' || this.suite === '♠' ? 'black' : 'red';
     }
     
+    // NOTE: Function Creates a new HTML Element inside a div. 
     getHTML() {
         const cardDiv = document.createElement('div');
         cardDiv.innerText = this.suite;
