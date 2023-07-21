@@ -19,9 +19,18 @@ export default class Deck {
     constructor(cards = freshDeck()) {
         this.cards = cards;
     }
-
+    
+    // function returns the number of 
     get numberOfCards() {
         return this.cards.length;
+    }
+
+    pop() {
+        return this.cards.shift()
+    }
+
+    push() {
+        this.cards.push(cards);
     }
 
     shuffle() {
