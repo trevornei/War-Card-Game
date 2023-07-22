@@ -30,7 +30,7 @@ export default class Deck {
         return this.cards.shift()
     }
 
-    // NOTE: Returns the last card from the deck.
+    // NOTE: Adds a card/element to array.
     push(card) {
         this.cards.push(card);
     }
@@ -54,8 +54,11 @@ class Card {
     }
     // NOTE: Method uses a ternary operator to decide the color of the card based on the suite.
     get color() {
-        return this.suit === '♣' || this.suit === '♠' ? 'black' : 'red';
+        const color = this.suit === '♣' || this.suit === '♠' ? 'black' : 'red';
+        console.log(`Suit: ${this.suit}, Color: ${color}`); // add this line
+        return color;
     }
+    
     
     // NOTE: Method Creates a new HTML Element inside a div. 
     getHTML() {
@@ -63,6 +66,7 @@ class Card {
         cardDiv.innerText = this.suit;
         cardDiv.classList.add("card", this.color);
         cardDiv.dataset.value = `${this.value} ${this.suit}`;
+        console.log(cardDiv.classList)
         return cardDiv;
     }
 }

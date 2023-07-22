@@ -18,7 +18,7 @@ body::before {
 
 
 body {
-    margin: 0;
+    margin: 25%;
 
     display: grid;
     grid-template-columns: repeat(2, 4rem);
@@ -97,5 +97,9 @@ body {
     bottom: .5rem;
     right: .5rem;
     transform: rotate(180deg);
-    color: white;
+    background-color: white;
+}
+
+.red {
+    color: red;
 }
