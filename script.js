@@ -27,7 +27,6 @@ const playerDeckElement = document.querySelector('.player-deck');
 const text = document.querySelector('.text');
 
 let playerDeck, computerDeck, inRound, stop;
-inRound = false;
 
 /* Variable for when the user clicks to flip a card. 
    Variable for when the user clicks to flip a card. 
@@ -101,8 +100,8 @@ function cleanBeforeRound() {
             playerDeck.push(computerCard)
         }
         
-        if (isGameOver) {
-            text.innerText = 'You Loose';
+        if (isGameOver(playerDeck)) {
+            text.innerText = 'You Loose!';
             stop = true;
         } else if (isGameOver(computerDeck)) {
             text.innerHTML = 'You Win!'
