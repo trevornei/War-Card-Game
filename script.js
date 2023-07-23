@@ -123,3 +123,5 @@ function isRoundWinner(CardOne, cardTwo) {
 function isGameOver(Deck) {
     return Deck.numberOfCards === 0
 }
+
+module.exports = isRoundWinner;
