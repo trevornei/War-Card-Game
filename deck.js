@@ -96,6 +96,6 @@ function freshDeck() {
             return new Card (suit, value);
         })
     })
-
-    /* */
 }
+
+console.table(freshDeck()); 

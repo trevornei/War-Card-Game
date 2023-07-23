@@ -1,7 +1,9 @@
+/*NOTE: imports the Deck object from the deck.js file in the Coding-Assignment directory. */
 import Deck from './deck.js';
 
-
-// Converts strings into values that can be compared against one another.
+/* NOTE: CARD_VALUE_MAP Object takes the strings 1-10 and the characters J, Q, K, A, as properties
+   and assigns them as values so that the method isRoundWinner() can compare NUMBERS to determine
+   who wins a round, player or computer. */
 const CARD_VALUE_MAP = {
   "2": 2,
   "3": 3,
@@ -18,7 +20,8 @@ const CARD_VALUE_MAP = {
   A: 14
 }
 
-// NOTE: These variables allow me to manipulate data inside div's from HTML for their respective containers. 
+/*  NOTE: These variables the document object combined with the .query selector to manipulate data
+    inside the div's via classes (in the context of HTML classes not JS classes). */ 
 const computerCardSlot = document.querySelector('.computer-card-slot');
 const playerCardSlot = document.querySelector('.player-card-slot');
 
@@ -31,12 +34,16 @@ let playerDeck, computerDeck, inRound, stop;
 /* Variable for when the user clicks to flip a card. 
    Variable for when the user clicks to flip a card. 
 */
+
+// NOTE: The event listener waits fo the user to click the mouse. Then the if and if else statements determine events.
 document.addEventListener('click', () => {
+    // if stop equals truthy, then start the game.
     if (stop) {
         startGame()
         return
     }
 
+    // if inRound equals truthy, then clean the board.
     if (inRound) {
         cleanBeforeRound()
     } else {
@@ -48,12 +55,14 @@ startGame();
 function startGame() {
     // Game starts out with a new instance of Deck.
     const deck = new Deck();
+    // The new instance of the deck is shuffled.
     deck.shuffle();
-    // deckMidPoint divides the deck by 2 and distrib
+    // deckMidPoint divides the deck by 2 and distributes the cards to the player and computer.
     // to check the midpoint: round the value of deck.numberOfCards (51) to the largest integer after dividing by two.
     const deckMidPoint = Math.ceil(deck.numberOfCards / 2);
     // NOTE: New instance of Deck representing the arrays for the user and the computer.
     // Player gets the first 26 cards in the deck.
+    /* NOTE: To checkfunctionality of isRoundWinner() and isGameOver() methods: alter the second argument for .slice() to 1. When in the browser, you can click and see how the computer correctly says returns 'win' or 'loss' from the isRoundWinner() method AND how the game correctly returns 'You Loose!' or 'You Win!' from the isGameOver() method.  */
     playerDeck = new Deck(deck.cards.slice(0, deckMidPoint))
     // Computer gets the last 26 cards in the deck.
     computerDeck = new Deck(deck.cards.slice(deckMidPoint, deck.numberOfCards));
@@ -61,9 +70,11 @@ function startGame() {
     inRound = false;
     stop = false;
 
+    // NOTE: Before the next round is determined, the '.computer-card-slot' and '.player-card-slot' divs are emptied.
     cleanBeforeRound();
 }
 
+// NOTE: Empties the divs for the computer and player cards.
 function cleanBeforeRound() {
     inRound = false;
     computerCardSlot.innerHTML = '';
@@ -80,26 +91,34 @@ function cleanBeforeRound() {
         const playerCard = playerDeck.pop();
         const computerCard = computerDeck.pop();
         
+        /* NOTE: appendChild() adds a node of the players card to the respective card slot.  */
         playerCardSlot.appendChild(playerCard.getHTML())
         computerCardSlot.appendChild(computerCard.getHTML())
         
         updateDeckCount()
         
+        // NOTE: if the players card is greater than the computers card, then add both the players card an the computers card to the players deck.
         if (isRoundWinner(playerCard, computerCard)) {
+            // NOTE: I used CSS grid-template to make a special row for the text to display (in the middle of the screen) who wins and looses(round, game)
             text.innerText = "Win";
+            // .push() method adds the players card to the end of the array, in this case, the end of the players deck.
             playerDeck.push(playerCard)
             playerDeck.push(computerCard)
+            // NOTE: if the computers card is greater than the players card, then add both the players card and the computers card to the computers deck.
         } else if (isRoundWinner(computerCard, playerCard)) {
             text.innerText = "Lose";
             computerDeck.push(playerCard)
             computerDeck.push(computerCard)
         } else {
-            // computer card not declared anywhere but used multiple times.
+            // Draw, adds the cards back to each players deck.
             text.innerText = "Draw";
             playerDeck.push(playerCard)
-            playerDeck.push(computerCard)
+            computerDeck.push(computerCard)
         }
         
+        /* NOTE: 
+            if the length of the array for the players deck is 0, .innerText() displays to the user that they loose. 
+            if the length of the array for the computers deck is 0, .innerText() displays to the user that they win. */
         if (isGameOver(playerDeck)) {
             text.innerText = 'You Loose!';
             stop = true;
@@ -124,4 +143,3 @@ function isGameOver(Deck) {
     return Deck.numberOfCards === 0
 }
 
-module.exports = isRoundWinner;
