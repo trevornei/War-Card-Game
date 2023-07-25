@@ -5,7 +5,7 @@
   "main": "deck.js",
   "scripts": {
     "test": "mocha"
-  },
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/trevornei/War-Card-Game.git"

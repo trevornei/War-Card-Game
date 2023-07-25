@@ -1,34 +1,15 @@
-// Run: npm test
+// IMPORTANT PLEASE READ!!
+/* To run the unit test without running into the error go to ----> deck.js line 23.
+   NOTE: delete 'export default' from line 23 to run unit test error.  
+   
+   Error: "Unexpected token 'export' (at deck.js:23:1)"
+*/
 
-const assert = import ('chai');
-const { isRoundWinner } = import('../script.js');
+const expect = chai.expect;
 
-describe('Card Game', function() {
-    describe('isRoundWinner function', function() {
-        it('should return true if CardOne value is greater than cardTwo value', function() {
-            let cardOne = {
-                value: 'A', 
-                suit: '♠'
-            };
-            let cardTwo = {
-                value: 'K', 
-                suit: '♣'
-            };
-            let result = isRoundWinner(cardOne, cardTwo);
-            chai.assert.equal(result, true);
-        });
-        it('should return false if cardTwo value is greater than CardOne value', function() {
-            let cardOne = {
-                value: 'K', 
-                suit: '♠'
-            };
-            let cardTwo = {
-                value: 'A',
-                suit: '♣'
-            };
-            let result = isRoundWinner(cardOne, cardTwo);
-            chai.assert.equal(result, false);
-        });
+describe('Testing Building Deck', function(){
+    it('Does deck contain 52 cards?', function() {
+        let testDeck = new Deck();
+        expect(testDeck.cards.length).to.equal(52);
     });
 });
-

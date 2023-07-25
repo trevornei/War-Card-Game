@@ -19,6 +19,7 @@ const VALUES = [
     "K"
 ]
 
+// NOTE: delete 'export default' from line 23 to run unit test error.  Error: "Unexpected token 'export' (at deck.js:23:1)"
 export default class Deck {
     constructor(cards = freshDeck()) {
         this.cards = cards;

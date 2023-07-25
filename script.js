@@ -142,4 +142,3 @@ function isRoundWinner(CardOne, cardTwo) {
 function isGameOver(Deck) {
     return Deck.numberOfCards === 0
 }
-
